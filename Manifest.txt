@@ -1,0 +1,9 @@
+ChangeLog
+History.rdoc
+Manifest.txt
+README.rdoc
+Rakefile
+data/strelka-fancyerrors/templates/layout.tmpl
+data/strelka-fancyerrors/templates/top.tmpl
+lib/strelka/app/fancyerrors.rb
+spec/strelka/app/fancyerrors_spec.rb

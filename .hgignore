@@ -1,0 +1,6 @@
+^doc/
+\.sublime-.*$
+^coverage/
+^pkg/
+\.DS_Store
+ChangeLog

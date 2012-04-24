@@ -1,0 +1,4 @@
+## 0.0.1 [2012-04-23] Michael Granger <ged@FaerieMUD.org>
+
+Initial release.
+

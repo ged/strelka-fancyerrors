@@ -1,0 +1,16 @@
+= Strelka-FancyErrors
+
+* FIX (url)
+
+== Description
+
+FIX (describe your package)
+
+== Installation
+
+    gem install Strelka-FancyErrors
+
+== License
+
+Copyright (c) 2012, FIX
+All rights reserved.
