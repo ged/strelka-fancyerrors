@@ -12,6 +12,14 @@ module Strelka::App::FancyErrors
 	extend Configurability,
 	       Strelka::Plugin
 
+
+	# Library version constant
+	VERSION = '0.9.0'
+
+	# Version-control revision constant
+	REVISION = %q$Revision$
+
+
 	# Configurability API -- set the config section that affects this plugin
 	config_key :fancyerrors
 
