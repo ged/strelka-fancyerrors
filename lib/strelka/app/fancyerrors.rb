@@ -46,6 +46,7 @@ module Strelka::App::FancyErrors
 		### Extension callback -- overridden to also install dependencies.
 		def self::extended( obj )
 			super
+			Strelka.log.debug "Setting up fancy error responses."
 
 			# Add the plugin's template directory to Inversion's template path
 			templatedir = DEFAULT_DATADIR + 'templates'
@@ -60,6 +61,8 @@ module Strelka::App::FancyErrors
 				fancy_server_error: 'server-error.tmpl',
 				fancy_client_error: 'client-error.tmpl'
 
+			Strelka.log.debug "Template map is now: %p" % [ self.template_map ]
+
 			obj.on_status( 400..499 ) {|res,info| self.fancy_error_template(:fancy_client_error, res, info) }
 			obj.on_status( 500..599 ) {|res,info| self.fancy_error_template(:fancy_server_error, res, info) }
 
@@ -72,12 +75,14 @@ module Strelka::App::FancyErrors
 	### +status_info+. If the application has a layout template, wrap it in that.
 	### Otherwise, use a simple default layout template.
 	def fancy_error_template( key, response, status_info )
+		self.log.info "[:fancyerrors] Handling %d status response." % [ status_info[:status] ]
 		content = self.template( key )
 		content.status_info = status_info
 
 		# If there's a layout template, just return the template as-is so
 		# templating will wrap it correctly
 		return content if self.layout
+		self.log.debug "Using the fancyerrors layout template."
 
 		# Otherwise, wrap it in a simple layout of our own
 		layout = self.template( :fancy_error_layout )
