@@ -3,8 +3,8 @@ History.rdoc
 Manifest.txt
 README.rdoc
 Rakefile
-data/strelka-fancyerrors/templates/client.tmpl
-data/strelka-fancyerrors/templates/layout.tmpl
-data/strelka-fancyerrors/templates/server.tmpl
+data/strelka-fancyerrors/templates/client-error.tmpl
+data/strelka-fancyerrors/templates/error-layout.tmpl
+data/strelka-fancyerrors/templates/server-error.tmpl
 lib/strelka/app/fancyerrors.rb
 spec/strelka/app/fancyerrors_spec.rb
