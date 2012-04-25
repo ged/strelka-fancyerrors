@@ -14,7 +14,7 @@ module Strelka::App::FancyErrors
 
 
 	# Library version constant
-	VERSION = '0.9.0'
+	VERSION = '0.0.1'
 
 	# Version-control revision constant
 	REVISION = %q$Revision$
@@ -56,9 +56,9 @@ module Strelka::App::FancyErrors
 
 			# Set up templates for error views
 			obj.templates \
-				fancy_error_layout: 'templates/layout.tmpl',
-				fancy_server_error: 'templates/server.tmpl',
-				fancy_client_error: 'templates/client.tmpl'
+				fancy_error_layout: 'error-layout.tmpl',
+				fancy_server_error: 'server-error.tmpl',
+				fancy_client_error: 'client-error.tmpl'
 
 			obj.on_status( 400..499 ) {|res,info| self.fancy_error_template(:fancy_client_error, res, info) }
 			obj.on_status( 500..599 ) {|res,info| self.fancy_error_template(:fancy_server_error, res, info) }
