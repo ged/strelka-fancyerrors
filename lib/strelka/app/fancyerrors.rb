@@ -61,7 +61,7 @@ module Strelka::App::FancyErrors
 				fancy_server_error: 'server-error.tmpl',
 				fancy_client_error: 'client-error.tmpl'
 
-			Strelka.log.debug "Template map is now: %p" % [ self.template_map ]
+			Strelka.log.debug "Template map is now: %p" % [ obj.template_map ]
 
 			obj.on_status( 400..499 ) {|res,info| self.fancy_error_template(:fancy_client_error, res, info) }
 			obj.on_status( 500..599 ) {|res,info| self.fancy_error_template(:fancy_server_error, res, info) }
