@@ -1,0 +1,35 @@
+<?import request ?>
+
+<header>
+	<hgroup>
+		<h1><?call status_info[:status] ?></h1>
+	</hgroup>
+</header>
+
+<section id="backtrace">
+	<ol>
+<?for frame in status_info[:backtrace] ?>
+		<li><?escape frame ?></li>
+<?end for ?>
+	</ol>
+</section>
+
+<section id="request">
+<pre><code>
+	<?prettyprint request ?>
+</code></pre>
+</section>
+
+<section id="headers">
+	<table>
+		<tbody>
+<?for name,val in request.header.each ?>
+		<tr><th><?escape name ?></th><td><?escape val ?></td></tr>
+<?end for ?>
+		</tbody>
+	</table>
+</section>
+
+<section id="stack">
+	
+</section>
