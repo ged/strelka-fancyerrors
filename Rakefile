@@ -11,7 +11,7 @@ Hoe.plugin :signing
 Hoe.plugin :mercurial
 Hoe.plugin :deveiate
 
-Hoe.spec 'strelka-fancyerrors' do
+hoespec = Hoe.spec 'strelka-fancyerrors' do
 	self.readme_file = 'README.rdoc'
 	self.history_file = 'History.rdoc'
 	self.extra_rdoc_files = FileList[ '*.rdoc' ]
