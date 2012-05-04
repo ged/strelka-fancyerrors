@@ -2,6 +2,8 @@
 # vim: set nosta noet ts=4 sw=4:
 # encoding: utf-8
 
+require 'inversion'
+
 require 'strelka' unless defined?( Strelka )
 require 'strelka/app' unless defined?( Strelka::App )
 
@@ -76,19 +78,24 @@ module Strelka::App::FancyErrors
 		self.log.info "[:fancyerrors] Handling %d status response." % [ status_info[:status] ]
 		content = self.template( key )
 		content.status_info = status_info
+		self.log.debug "  error content template loaded from %s" % [ content.source_file || 'memory' ]
 
 		# If there's a layout template, just return the template as-is so
 		# templating will wrap it correctly
 		return content if self.layout
-		self.log.debug "Using the fancyerrors layout template."
+		self.log.debug "  using the fancyerrors layout template."
 
 		# Otherwise, wrap it in a simple layout of our own
 		layout = self.template( :fancy_error_layout )
 		layout.body = content
 		layout.status_info = status_info
 
+		self.log.debug "  error layout template loaded from %s" % [ layout.source_file || 'memory' ]
+
 		# :templating method
 		self.set_common_attributes( layout, response.request )
+
+		return layout
 	end
 
 end # module Strelka::App::Errors
