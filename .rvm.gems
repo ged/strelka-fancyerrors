@@ -1,3 +1,5 @@
 # .gems generated gem export file. Note that any env variable settings will be missing. Append these after using a ';' field separator
-inversion -v0.9.0
+inversion -v0.10.0
 #strelka -v0.0.1
+loggability -v0.2.1
+

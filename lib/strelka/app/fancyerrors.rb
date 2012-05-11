@@ -2,6 +2,8 @@
 # vim: set nosta noet ts=4 sw=4:
 # encoding: utf-8
 
+require 'loggability'
+require 'configurability'
 require 'inversion'
 
 require 'strelka' unless defined?( Strelka )
@@ -11,8 +13,14 @@ require 'strelka/app' unless defined?( Strelka::App )
 # Fancy/useful error output for Strelka appliation development. This plugin
 # uses the Strelka default :errors and :templating plugins.
 module Strelka::App::FancyErrors
-	extend Configurability,
+	extend Loggability,
+	       Configurability,
+	       Strelka::MethodUtilities,
 	       Strelka::Plugin
+
+
+	# Loggability API -- log to Strelka's logger
+	log_to :strelka
 
 
 	# Library version constant
@@ -42,17 +50,39 @@ module Strelka::App::FancyErrors
 		end
 
 
+	# Configurability configuration defaults
+	CONFIG_DEFAULTS = {
+		templates_dir: DEFAULT_DATADIR + 'templates',
+	}
+
+
+	##
+	# The path to the error templates
+	singleton_attr_accessor :templates_dir
+	self.templates_dir = CONFIG_DEFAULTS[:templates_dir]
+
+
+	### Configurability API -- Configure the plugin
+	def self::configure( config=nil )
+		if config
+			self.log.debug "Configuring fancy error templates: %p" % [ config ]
+			self.templates_dir = Pathname( config[:templates_dir] ) if config[:templates_dir]
+		end
+	end
+
+
 	# Class-level functionality
 	module ClassMethods
+		extend Loggability
+		log_to :strelka
 
 		### Extension callback -- overridden to also install dependencies.
 		def self::extended( obj )
 			super
-			Strelka.log.debug "Setting up fancy error responses."
+			self.log.debug "Setting up fancy error responses."
 
 			# Add the plugin's template directory to Inversion's template path
-			templatedir = DEFAULT_DATADIR + 'templates'
-			Inversion::Template.template_paths.push( templatedir )
+			Inversion::Template.template_paths.push( Strelka::App::FancyErrors.templates_dir )
 
 			# Load the plugins this one depends on if they aren't already
 			obj.plugins :errors, :templating
