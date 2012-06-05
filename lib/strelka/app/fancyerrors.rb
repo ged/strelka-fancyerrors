@@ -71,6 +71,16 @@ module Strelka::App::FancyErrors
 	end
 
 
+	### Inclusion callback -- add the plugin's templates directory right before activation
+	### so loading the config doesn't clobber it.
+	def self::included( mod )
+		# Add the plugin's template directory to Inversion's template path
+		Inversion::Template.template_paths.push( self.templates_dir )
+
+		super
+	end
+
+
 	# Class-level functionality
 	module ClassMethods
 		extend Loggability
@@ -80,9 +90,6 @@ module Strelka::App::FancyErrors
 		def self::extended( obj )
 			super
 			self.log.debug "Setting up fancy error responses."
-
-			# Add the plugin's template directory to Inversion's template path
-			Inversion::Template.template_paths.push( Strelka::App::FancyErrors.templates_dir )
 
 			# Load the plugins this one depends on if they aren't already
 			obj.plugins :errors, :templating
