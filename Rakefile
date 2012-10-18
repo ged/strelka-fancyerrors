@@ -18,12 +18,13 @@ hoespec = Hoe.spec 'strelka-fancyerrors' do
 
 	self.developer 'Michael Granger', 'ged@FaerieMUD.org'
 
-	self.dependency 'strelka', '~> 0.0.1.pre'
-	self.dependency 'inversion', '~> 0.9'
+	self.dependency 'strelka', '~> 0.0.2'
+	self.dependency 'inversion', '~> 0.11'
+	self.dependency 'loggability', '~> 0.5'
 	self.dependency 'hoe-deveiate', '~> 0.1', :developer
 
 	self.spec_extras[:licenses] = ["BSD"]
-	self.spec_extras[:rdoc_options] = ['-f', 'fivefish', '-t', 'Strelka Web Application Toolkit']
+	self.spec_extras[:rdoc_options] = ['-f', 'fivefish', '-t', 'Strelka Fancy Error Handler']
 	self.require_ruby_version( '>=1.9.2' )
 	self.hg_sign_tags = true if self.respond_to?( :hg_sign_tags= )
 	self.check_history_on_release = true if self.respond_to?( :check_history_on_release= )
