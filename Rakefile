@@ -18,7 +18,7 @@ hoespec = Hoe.spec 'strelka-fancyerrors' do
 
 	self.developer 'Michael Granger', 'ged@FaerieMUD.org'
 
-	self.dependency 'strelka', '~> 0.0.2'
+	self.dependency 'strelka', '~> 0.1'
 	self.dependency 'inversion', '~> 0.11'
 	self.dependency 'loggability', '~> 0.5'
 	self.dependency 'hoe-deveiate', '~> 0.1', :developer
