@@ -70,21 +70,21 @@ describe Strelka::App::FancyErrors do
 	end
 
 
-	it_should_behave_like( "A Strelka::App Plugin" )
+	it_should_behave_like( "A Strelka Plugin" )
 
 
 	it "renders server errors using the server error template" do
 		req = request_factory.get( '/server' )
 		res = appclass.new.handle( req )
 
-		res.body.read.should =~ /server error template/i
+		expect( res.body.read ).to match( /server error template/i )
 	end
 
 	it "renders client errors using the client error template" do
 		req = request_factory.get( '/client' )
 		res = appclass.new.handle( req )
 
-		res.body.read.should =~ /client error template/i
+		expect( res.body.read ).to match( /client error template/i )
 	end
 
 	it "renders errors using the existing layout template if one is set" do
@@ -94,7 +94,7 @@ describe Strelka::App::FancyErrors do
 		req = request_factory.get( '/client' )
 		res = app.handle( req )
 
-		res.body.read.should =~ /common layout/i
+		expect( res.body.read ).to match( /common layout/i )
 	end
 
 end
