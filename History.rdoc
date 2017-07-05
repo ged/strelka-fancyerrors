@@ -1,3 +1,8 @@
+==  v0.1.0 [2017-07-05] Michael Granger <ged@FaerieMUD.org>
+
+Update dependencies, build files.
+
+
 == v0.0.3 [2013-02-28] Michael Granger <ged@FaerieMUD.org>
 
 Update dependencies, omit fivefish rdoc option.
